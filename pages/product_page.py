@@ -1,0 +1,18 @@
+from .base_page import BasePage
+from .locators import ProductPageLocators
+
+
+class ProductPage(BasePage):
+    def go_to_add_product_to_basket(self):  # добавить продукт в корзину
+        self.browser.find_element(*ProductPageLocators.ADD_BUTTON).click()
+
+    def shoud_be_product_in_basket(self):  # проверка продукта в корзине
+        messageAddBasket = self.browser.find_element(*ProductPageLocators.MESSAGE_ADD_BASKET).text
+        # print(messageAddBasket)
+        productName = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        # print(productName)
+        assert productName == messageAddBasket, "Product NOT in basket"
+
+    def shoud_be_price_of_product_in_basket(self):  # проверка цены
+        assert self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text == self.browser.find_element(
+            *ProductPageLocators.MESSAGE_BASKET_AMOUNT).text, "Product NOT in basket"
