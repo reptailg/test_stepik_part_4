@@ -17,6 +17,9 @@ def browser(request):
         print("\nstart chrome browser for test..")
         options = Options()
         options.add_experimental_option('prefs', {'intl.accept_languages': language_name})
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x935')
+
         browser = webdriver.Chrome(options=options)
 
     elif browser_name == "firefox":# firefox
@@ -31,5 +34,5 @@ def browser(request):
 
     yield browser
     print("\nquit browser..")
-   # browser.quit()
+    browser.quit()
 
