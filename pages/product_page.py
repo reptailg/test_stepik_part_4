@@ -16,3 +16,12 @@ class ProductPage(BasePage):
     def shoud_be_price_of_product_in_basket(self):  # проверка цены
         assert self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text == self.browser.find_element(
             *ProductPageLocators.MESSAGE_BASKET_AMOUNT).text, "Product NOT in basket"
+
+    def should_not_be_success_message(self): # упадет, как только увидит искомый элемент. Не появился: успех, тест зеленый
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_be_success_message(self): # будет ждать до тех пор, пока элемент не исчезнет
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+                 "Success message not presented, but should be"
+
