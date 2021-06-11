@@ -8,16 +8,14 @@ class ProductPage(BasePage):
 
     def shoud_be_product_in_basket(self):  # проверка продукта в корзине
         messageAddBasket = self.browser.find_element(*ProductPageLocators.MESSAGE_ADD_BASKET).text
-        # print(messageAddBasket)
         productName = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        # print(productName)
         assert productName == messageAddBasket, "Product NOT in basket"
 
     def shoud_be_price_of_product_in_basket(self):  # проверка цены
         assert self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text == self.browser.find_element(
             *ProductPageLocators.MESSAGE_BASKET_AMOUNT).text, "Product NOT in basket"
 
-    def should_not_be_success_message(self): # упадет, как только увидит искомый элемент. Не появился: успех, тест зеленый
+    def should_not_be_success_message(self): # упадет, как только увидит искомый элемент. Не появился:тест зеленый
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented, but should not be"
 

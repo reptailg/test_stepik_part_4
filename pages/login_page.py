@@ -10,7 +10,6 @@ class LoginPage(BasePage):
 
     def should_be_login_url(self):
         # реализуйте проверку на корректный url адрес
-        #print(self.browser.current_url)
         assert "login" in self.browser.current_url, "URL is wrong!"
 
     def should_be_login_form(self):

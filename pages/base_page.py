@@ -42,7 +42,6 @@ class BasePage:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return True
-
         return False
 
     def is_disappeared(self, how, what, timeout=4):#исчезает ли элемент за заданное время
@@ -51,13 +50,11 @@ class BasePage:
                 until_not(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
-
         return True
 
     def go_to_login_page(self):
         login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         login_link.click()
-        #return LoginPage(browser=self.browser, url=self.browser.current_url)
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
@@ -65,6 +62,7 @@ class BasePage:
     # переход в корзину через кнопку
     def go_to_basket_button(self):
         self.browser.find_element(*BasePageLocators.GO_TO_BASKET_BUTTON).click()
+
     # Проверка на авторизацию
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
