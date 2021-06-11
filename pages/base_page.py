@@ -65,5 +65,10 @@ class BasePage:
     # переход в корзину через кнопку
     def go_to_basket_button(self):
         self.browser.find_element(*BasePageLocators.GO_TO_BASKET_BUTTON).click()
+    # Проверка на авторизацию
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
+
 
 
