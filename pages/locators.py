@@ -19,5 +19,12 @@ class ProductPageLocators():
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    GO_TO_BASKET_BUTTON = (By.CSS_SELECTOR, ".basket-mini>.btn-group>:first-child") # кнопка перехода в корзину
+
+class BasketPageLocators():
+    BASKET_FORM = (By.CSS_SELECTOR, "#content_inner")
+    BASKET_CLEAR = (By.CSS_SELECTOR, "#content_inner>p") # текст о том, что корзина пуста
+    BASKET_BUTTON_BLOCK = (By.CSS_SELECTOR, ".btn-block") # перейти к оформлению - если нет - пустая корзина
+
 
 

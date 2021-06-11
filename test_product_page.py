@@ -1,6 +1,7 @@
 import pytest
 
 import pages.product_page
+import pages.basket_page
 #import time
 
 # тестируем 10 линков
@@ -53,15 +54,35 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.should_be_success_message()
 
 # Проверить наличие ссылки на страницу логина
+@pytest.mark.skip
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = pages.product_page.ProductPage(browser, link)
     page.open()
     page.should_be_login_link()
 
+@pytest.mark.skip
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = pages.product_page.ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
+
+#Гость открывает страницу товара
+#Переходит в корзину по кнопке в шапке
+#Ожидаем, что в корзине нет товаров
+#Ожидаем, что есть текст о том что корзина пуста
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/"
+    page=pages.product_page.ProductPage(browser, link)
+    page.open()
+    page.go_to_basket_button() # перешли в корзину
+    link2 = browser.current_url # пытаемся получить линк новой страницы
+    #print(link2)
+    page2 = pages.basket_page.BasketPage(browser, link2)
+    page2.not_product_in_basket()
+    page2.text_basket_is_clear()
+
+
+
 
